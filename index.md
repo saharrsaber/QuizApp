@@ -19,7 +19,7 @@
           ></select>
         </div>
         <div class="section">
-          <label for="num">Total Number of Questions:</label>
+          <label for="num">#Questions:</label>
           <input
             id="num"
             type="number"
@@ -29,11 +29,6 @@
             value="5"
             required
           />
-          <!-- <select class="select" name="number-select">
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-          </select> -->
         </div>
         <div class="section">
           <label for="diff">Difficulty:</label>
@@ -47,9 +42,11 @@
       </div>
       <div class="quiz-space hidden">
         <div class="quiz-about">
-          <div class="selected-cat">Category: <span></span></div>
-          <div class="selected-num">Questions Count: <span></span></div>
-          <div class="selected-diff">Difficulty: <span></span></div>
+          <div class="selected-cat"></div>
+          <div class="selected-num">
+            <span class="cur"></span>/<span class="all"></span>
+          </div>
+          <div class="selected-diff"></div>
         </div>
         <div class="whole-questions"></div>
         <div class="control-btns">
@@ -57,12 +54,14 @@
           <button class="next-button">Next</button>
         </div>
         <div class="result hidden">
+          <div class="total-res">Quiz Result: <span></span></div>
           <div class="correct-res">Correct Answers: <span></span></div>
           <div class="wrong-res">Wrong Answers: <span></span></div>
-          <div class="total-res">Quiz Result: <span></span></div>
         </div>
-        <div class="bullets"></div>
-        <div class="count-down"></div>
+        <div class="assets-countainer">
+          <div class="bullets"></div>
+          <div class="count-down"></div>
+        </div>
       </div>
     </div>
     <script src="script.js"></script>

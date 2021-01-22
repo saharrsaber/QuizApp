@@ -1,5 +1,6 @@
 "use strict";
 
+// Selecting HTML Elements
 const catSelect = document.querySelector("#cat");
 const btnInfo = document.querySelector(".submit-info");
 const numInput = document.querySelector("#num");
@@ -8,7 +9,8 @@ const quizInfo = document.querySelector(".quiz-info");
 const quizSpace = document.querySelector(".quiz-space");
 const wholeQuestions = document.querySelector(".whole-questions");
 const catDiv = document.querySelector(".selected-cat");
-const numDiv = document.querySelector(".selected-num");
+const totNumSpan = document.querySelector(".all");
+const curNumSpan = document.querySelector(".cur");
 const diffDiv = document.querySelector(".selected-diff");
 const bullets = document.querySelector(".bullets");
 const controlBtns = document.querySelector(".control-btns");
@@ -19,7 +21,8 @@ const wrongRes = document.querySelector(".wrong-res");
 const totalRes = document.querySelector(".total-res");
 const resultContainer = document.querySelector(".result");
 const countDownElement = document.querySelector(".count-down");
-const duration = 3;
+// Initializing all variables
+const duration = 120;
 let catId,
   totalNum,
   diffLevel,
@@ -30,6 +33,9 @@ let catId,
   checked,
   countDownInterval;
 
+getCategoryNames();
+
+// countDown Timer
 function countDownFn(duration, index) {
   if (index < totalNum) {
     clearInterval(countDownInterval);
@@ -52,11 +58,7 @@ function compareResult() {
   checked = document.querySelector(
     `input[name="answers_${curQuestion}"]:checked`
   ).value;
-  console.log(curScore);
-  console.log(curQuestion + "answered as " + checked);
   //compare correct or not
-  console.log("correct :" + correctAnswers[curQuestion]);
-  console.log("checked :" + checked);
   if (correctAnswers[curQuestion] === checked) {
     curScore++;
     bullets.children[curQuestion].classList.add("good");
@@ -69,17 +71,18 @@ function compareResult() {
 }
 
 //category list API
-const listCategories = fetch("https://opentdb.com/api_category.php")
-  .then((response) => response.json())
-  .then((data) => {
-    data.trivia_categories.forEach((cat) => {
-      catSelect.insertAdjacentHTML(
-        "beforeend",
-        `<option value="${cat.id}">${cat.name}</option>`
-      );
+function getCategoryNames() {
+  fetch("https://opentdb.com/api_category.php")
+    .then((response) => response.json())
+    .then((data) => {
+      data.trivia_categories.forEach((cat) => {
+        catSelect.insertAdjacentHTML(
+          "beforeend",
+          `<option value="${cat.id}">${cat.name}</option>`
+        );
+      });
     });
-  });
-
+}
 //start quiz btn
 btnInfo.addEventListener("click", function () {
   //retrive quiz info
@@ -87,11 +90,10 @@ btnInfo.addEventListener("click", function () {
   catName = catSelect.options[catSelect.selectedIndex].text;
   totalNum = numInput.value;
   diffLevel = diffSelect.value;
-  catDiv.firstElementChild.textContent = String(catName);
-  numDiv.firstElementChild.textContent = String(totalNum);
-  diffDiv.firstElementChild.textContent = String(diffLevel);
-  //log for testing
-  console.log([catId, totalNum, diffLevel]);
+  catDiv.textContent = String(catName);
+  totNumSpan.textContent = String(totalNum);
+  diffDiv.textContent = String(diffLevel);
+  curNumSpan.textContent = "1";
   // hidden class
   quizInfo.classList.add("hidden");
   quizSpace.classList.remove("hidden");
@@ -102,7 +104,6 @@ btnInfo.addEventListener("click", function () {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log("here");
       data.results.forEach((res, i) => {
         wholeQuestions.insertAdjacentHTML(
           "beforeend",
@@ -111,7 +112,7 @@ btnInfo.addEventListener("click", function () {
           <h2>Question ${i + 1}:${res.question}</h2>
         </div>
 
-        <div class="answers-area ">
+        <div class="answers-area  a_${i}">
           <div class="answer">
             <input type="radio" id="q${i}_1" name="answers_${i}" value ="${
             res.incorrect_answers[0]
@@ -141,6 +142,14 @@ btnInfo.addEventListener("click", function () {
         );
         correctAnswers[i] = res.correct_answer;
         bullets.insertAdjacentHTML("beforeend", "<span></span>");
+
+        console.log(res.correct_answer);
+        let answersArea = document.querySelector(`.a_${i}`);
+
+        answersArea.children[3].style.order = String(getRand());
+        answersArea.children[2].style.order = String(getRand());
+        answersArea.children[1].style.order = String(getRand());
+        answersArea.children[0].style.order = String(getRand());
       });
       wholeQuestions.children[curQuestion].classList.remove("hidden");
       bullets.children[curQuestion].classList.add("on");
@@ -148,13 +157,14 @@ btnInfo.addEventListener("click", function () {
     });
 });
 
-//  next  btn
+// clicking on next btn
 nextBtn.addEventListener("click", function () {
   compareResult();
   // move to next question
   curQuestion++;
   wholeQuestions.children[curQuestion].classList.remove("hidden");
   bullets.children[curQuestion].classList.add("on");
+  curNumSpan.textContent = String(curQuestion + 1);
 
   if (curQuestion == totalNum - 1) {
     nextBtn.classList.add("hidden");
@@ -163,7 +173,7 @@ nextBtn.addEventListener("click", function () {
   }
 });
 
-//  finish  btn
+// clicking on finish btn
 finishBtn.addEventListener("click", function () {
   compareResult();
   controlBtns.classList.add("hidden");
@@ -173,3 +183,7 @@ finishBtn.addEventListener("click", function () {
   resultContainer.classList.remove("hidden");
   countDownElement.classList.add("hidden");
 });
+
+function getRand() {
+  return Math.floor(Math.random() * 4) + 1;
+}

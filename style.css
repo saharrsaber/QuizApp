@@ -26,15 +26,27 @@ button {
 .quiz-app .quiz-info {
   background-color: #f8f8f8;
   padding: 20px;
-  width: 500px;
+  width: 450px;
   margin: 5px auto;
+  position: relative;
+  border-radius: 10px;
 }
-.quiz-app .quiz-info .section {
+/* .quiz-app .quiz-info .section {
   flex: 1;
+} */
+
+.quiz-app .quiz-info label {
+  margin: 5px;
+  display: inline-block;
 }
-.quiz-app .quiz-info .select {
+
+.quiz-app .quiz-info .select,
+.quiz-app .quiz-info #num {
+  width: 270px;
   padding: 3px 10px;
   margin: 5px;
+  position: absolute;
+  right: 15px;
 }
 .quiz-app .quiz-info .submit-info {
   text-align: center;
@@ -51,6 +63,27 @@ button {
   background-color: #f8f8f8;
   padding: 20px;
   margin-top: 15px;
+  border-radius: 10px;
+}
+
+.quiz-app .quiz-about {
+  position: relative;
+}
+.quiz-app .quiz-about .selected-num {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.quiz-app .quiz-about .selected-diff {
+  position: absolute;
+  right: 50%;
+  top: 20px;
+}
+
+.quiz-app .quiz-about,
+.quiz-app .result div {
+  font-size: 20px;
+  line-height: 28px;
 }
 .quiz-app .quiz-area h2 {
   margin: 0;
@@ -61,14 +94,14 @@ button {
 .quiz-app .answers-area {
   background-color: #f8f8f8;
   padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
 }
 .quiz-app .answers-area .answer {
   background-color: #f9f9f9;
   padding: 15px;
 }
-.quiz-app .answers-area .answer:not(:last-child) {
-  border-bottom: 1px solid #dfdfdf;
-}
+
 .quiz-app .answers-area .answer input[type="Radio"]:checked + label {
   color: #0075ff;
 }
@@ -85,23 +118,52 @@ button {
 .quiz-app .control-btns .next-button {
   background-color: #0075ff;
   width: 70%;
+  margin-bottom: 0;
 }
 .quiz-app .control-btns .finish-button {
   background-color: #bd170c;
   width: 29%;
+  margin-bottom: 0;
 }
 .quiz-app .submit-button:focus {
   outline: none;
 }
-.quiz-app .bullets {
-  border-top: 1px solid #dfdfdf;
-  background-color: #fff;
+.quiz-app .result {
+  position: relative;
+}
+.quiz-app .result .total-res {
+  font-size: 40px;
+  background-color: #2bcbba;
+  display: inline-block;
+  padding: 15px;
+  width: 70%;
+  margin: 5px;
+  border-radius: 10px;
+}
+.quiz-app .result .correct-res {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.quiz-app .result .wrong-res {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+}
+
+.quiz-app .assets-countainer {
   display: flex;
+  background-color: #f8f8f8;
   padding: 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+.quiz-app .bullets {
+  width: 90%;
 }
 .quiz-app .bullets span {
   flex: 1;
-  display: flex;
+  display: inline-block;
   width: 20px;
   height: 20px;
   background-color: #ddd;
