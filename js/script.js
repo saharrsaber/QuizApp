@@ -21,6 +21,7 @@ const wrongRes = document.querySelector(".wrong-res");
 const totalRes = document.querySelector(".total-res");
 const resultContainer = document.querySelector(".result");
 const countDownElement = document.querySelector(".count-down");
+const correctAnswersContainer = document.querySelector(".correct-answers")
 // Initializing all variables
 const duration = 120;
 let catId,
@@ -108,11 +109,11 @@ btnInfo.addEventListener("click", function () {
         wholeQuestions.insertAdjacentHTML(
           "beforeend",
           `<div class="question_${i} hidden">
-        <div class="quiz-area">
-          <h2>Question ${i + 1}:${res.question}</h2>
+        <div class="quiz-area" style="border-radius: 10px 10px 0px 0px;">
+          <h2 style="font-size:20px;">Question ${i + 1}:${res.question}</h2>
         </div>
 
-        <div class="answers-area  a_${i}">
+        <div class="answers-area  a_${i}"  style="border-radius: 0px 0px 10px 10px;">
           <div class="answer">
             <input type="radio" id="q${i}_1" name="answers_${i}" value ="${
             res.incorrect_answers[0]
@@ -140,6 +141,20 @@ btnInfo.addEventListener("click", function () {
         </div>
       </div>`
         );
+        correctAnswersContainer.insertAdjacentHTML(
+          "beforeend",
+          `<div class="question_${i}">
+        <div class="quiz-area" style="border-radius: 10px 10px 0px 0px;">
+          <h2 style="font-size:20px; ">Question ${i + 1}:${res.question}</h2>
+        </div>
+        <div class="answers-area  a_${i} " style="border-radius: 0px 0px 10px 10px;">
+          <div class="answer">
+            <label for="q${i}_4"><i class="far fa-circle"></i> ${res.correct_answer}</label>
+          </div>
+        </div>
+      </div>`
+        );
+        
         correctAnswers[i] = res.correct_answer;
         bullets.insertAdjacentHTML("beforeend", "<span></span>");
 
@@ -182,6 +197,7 @@ finishBtn.addEventListener("click", function () {
   totalRes.firstElementChild.textContent = curScore;
   resultContainer.classList.remove("hidden");
   countDownElement.classList.add("hidden");
+  correctAnswersContainer.classList.remove("hidden");
 });
 
 function getRand() {

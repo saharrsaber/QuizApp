@@ -20,65 +20,47 @@ button {
   margin: 20px auto;
   padding: 15px;
 }
-.quiz-app .heading {
-  text-align: center;
-}
 .quiz-app .quiz-info {
   background-color: #f8f8f8;
   padding: 20px;
-  width: 450px;
+  /* width: 450px; */
   margin: 5px auto;
   position: relative;
   border-radius: 10px;
 }
-/* .quiz-app .quiz-info .section {
-  flex: 1;
-} */
 
-.quiz-app .quiz-info label {
-  margin: 5px;
-  display: inline-block;
-}
-
-.quiz-app .quiz-info .select,
-.quiz-app .quiz-info #num {
-  width: 270px;
-  padding: 3px 10px;
-  margin: 5px;
-  position: absolute;
-  right: 15px;
-}
-.quiz-app .quiz-info .submit-info {
+/* .quiz-app .quiz-info .submit-info {
   text-align: center;
   margin: 15px auto 0px;
   width: 100%;
-}
-.quiz-app .quiz-space {
+} */
+/* .quiz-app .quiz-space {
   width: 700px;
   margin: 20px auto;
-}
+} */
 .quiz-app .quiz-area,
 .quiz-app .quiz-about,
 .quiz-app .result {
   background-color: #f8f8f8;
   padding: 20px;
+  width: 100%;
   margin-top: 15px;
   border-radius: 10px;
 }
 
-.quiz-app .quiz-about {
+/* .quiz-app .quiz-about {
   position: relative;
-}
-.quiz-app .quiz-about .selected-num {
+} */
+/* .quiz-app .quiz-about .selected-num {
   position: absolute;
   right: 20px;
   top: 20px;
-}
-.quiz-app .quiz-about .selected-diff {
+} */
+/* .quiz-app .quiz-about .selected-diff {
   position: absolute;
   right: 50%;
   top: 20px;
-}
+} */
 
 .quiz-app .quiz-about,
 .quiz-app .result div {
@@ -117,38 +99,22 @@ button {
 
 .quiz-app .control-btns .next-button {
   background-color: #0075ff;
-  width: 70%;
   margin-bottom: 0;
+  
 }
 .quiz-app .control-btns .finish-button {
   background-color: #bd170c;
-  width: 29%;
   margin-bottom: 0;
 }
 .quiz-app .submit-button:focus {
   outline: none;
-}
-.quiz-app .result {
-  position: relative;
 }
 .quiz-app .result .total-res {
   font-size: 40px;
   background-color: #2bcbba;
   display: inline-block;
   padding: 15px;
-  width: 70%;
-  margin: 5px;
   border-radius: 10px;
-}
-.quiz-app .result .correct-res {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-.quiz-app .result .wrong-res {
-  position: absolute;
-  right: 20px;
-  top: 50px;
 }
 
 .quiz-app .assets-countainer {
